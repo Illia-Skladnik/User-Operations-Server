@@ -42,14 +42,6 @@ export class User extends Person implements types.User {
   registerUser() {
     addUser(this);
   }
-  // async registerUser(newUser: any) {
-  //   const allUsers = await getAllUsers();
-  //   const newAllUsers = [...allUsers, newUser];
-  
-  //   const filePath = path.resolve('./', 'users.json');
-  //   const string = JSON.stringify(newAllUsers);
-  //   await fs.writeFile(filePath, string);
-  // }
 }
 
 class Admin extends Person implements types.Admin {

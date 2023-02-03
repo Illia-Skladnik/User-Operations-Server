@@ -49,7 +49,7 @@ var registrationService = function (name, email, bossId, passWord) { return __aw
                 id = maxID + 1;
                 newUser = new personConstructor_1.User(id, name, email, bossId, passWord);
                 newUser.registerUser();
-                return [2 /*return*/, true];
+                return [2 /*return*/, newUser];
         }
     });
 }); };

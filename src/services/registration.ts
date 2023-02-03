@@ -7,6 +7,5 @@ export const registrationService = async (name: any, email: any, bossId: any, pa
   const newUser = new User(id, name, email, bossId, passWord);
   newUser.registerUser();
 
-  return true;
-  // проверить, прошла ли регистрация успешно
+  return newUser;
 };

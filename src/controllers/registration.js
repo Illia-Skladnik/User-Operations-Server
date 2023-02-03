@@ -39,8 +39,11 @@ exports.__esModule = true;
 exports.registrationController = void 0;
 var registration_1 = require("../services/registration");
 var isValidBossID_1 = require("../validators/isValidBossID");
+var isValidName_1 = require("../validators/isValidName");
+var isValidEmail_1 = require("../validators/isValidEmail");
+var isValidPassword_1 = require("../validators/isValidPassword");
 var registrationController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, name, email, bossId, passWord, bossIdValidation, ress;
+    var _a, name, email, bossId, passWord, bossIdValidation, newUser;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
@@ -49,17 +52,26 @@ var registrationController = function (req, res) { return __awaiter(void 0, void
             case 1:
                 bossIdValidation = _b.sent();
                 if (!bossIdValidation) {
-                    res.sendStatus(404);
+                    res.sendStatus(422);
                     throw new Error('No boss with current ID');
+                }
+                if (!(0, isValidName_1.isValidName)(name)) {
+                    res.sendStatus(422);
+                    throw new Error('Name can\'t be empty');
+                }
+                if (!(0, isValidEmail_1.isValidEmail)(email)) {
+                    res.sendStatus(422);
+                    throw new Error('Invalid email');
+                }
+                if (!(0, isValidPassword_1.isValidPassword)(passWord)) {
+                    res.sendStatus(422);
+                    throw new Error('Too weak password');
                 }
                 return [4 /*yield*/, (0, registration_1.registrationService)(name, email, bossId, passWord)];
             case 2:
-                ress = _b.sent();
-                if (!ress) {
-                    res.sendStatus(404);
-                    return [2 /*return*/];
-                }
-                res.sendStatus(201);
+                newUser = _b.sent();
+                res.statusCode = 201;
+                res.send(newUser);
                 return [2 /*return*/];
         }
     });

@@ -1,0 +1,10 @@
+"use strict";
+exports.__esModule = true;
+var express = require("express");
+// import express from 'express';
+var testRoute_1 = require("./routes/testRoute");
+var registration_1 = require("./routes/registration");
+var app = express();
+app.use("/test", testRoute_1.testRouter);
+app.use("/registration", registration_1.registrationRouter);
+app.listen(8080);

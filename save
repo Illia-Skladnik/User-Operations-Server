@@ -1,0 +1,19 @@
+[
+  {
+    "id": 1,
+    "name": "Lucifer",
+    "email": "darkLord@gmail.com",
+    "password": "666",
+    "role": "boss",
+    "subordinatesId": [2]
+  },
+
+  {
+    "id": 2,
+    "name": "Bob",
+    "email": "dasf@gmail.com",
+    "password": "666",
+    "role": "user",
+    "bossId": 1
+  }
+]

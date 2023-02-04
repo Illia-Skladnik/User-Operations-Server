@@ -1,7 +1,8 @@
 [
-  {"id":1,"name":"Splinter","email":"Splinter@gmail.com","password":"SplinterPass","role":"boss","subordinatesId":[2,3,4,5]},
+  {"id":1,"name":"Splinter","email":"splinter@gmail.com","password":"splinter123","role":"boss","subordinatesId":[2,3,4,5]},
   {"id":2,"name":"Donatello","email":"dasf@gmail.com","password":"ag3g","role":"user","bossId":1},
-  {"id":3,"name":"Michelangelo","email":"dasf@gmail.com","password":"ga34g","role":"user","bossId":1},
-  {"id":4,"name":"Raphael","email":"dasf@gmail.com","password":"66vasdvfv36","role":"user","bossId":1},
-  {"id":5,"name":"Leonardo","email":"dasf@gmail.com","password":"sgwegzcg3","role":"user","bossId":1}
+  {"id":3,"name":"Michelangelo","email":"michelangelo@gmail.com","password":"Michelangelo123","role":"user","bossId":1},
+  {"id":4,"name":"Raphael","email":"raphael@gmail.com","password":"raphael123","role":"user","bossId":1},
+  {"id":5,"name":"Leonardo","email":"leonardo@gmail.com","password":"leonardo123","role":"user","bossId":1},
+  {"id":6,"name":"Shredder","email":"shredder@gmail.com","password":"shredder123","role":"admin","bossId":1}
 ]

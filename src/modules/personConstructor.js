@@ -16,6 +16,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 exports.User = void 0;
+// import { getAllUsers } from '../services/getAllUsers';
 var addUser_1 = require("../services/addUser");
 var Person = /** @class */ (function () {
     function Person(id, name, email, password) {

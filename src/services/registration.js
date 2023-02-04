@@ -38,6 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 exports.registrationService = void 0;
 var personConstructor_1 = require("../modules/personConstructor");
+var addSubordinate_1 = require("./addSubordinate");
 var getMaxID_1 = require("./getMaxID");
 var registrationService = function (name, email, bossId, passWord) { return __awaiter(void 0, void 0, void 0, function () {
     var maxID, id, newUser;
@@ -48,6 +49,9 @@ var registrationService = function (name, email, bossId, passWord) { return __aw
                 maxID = _a.sent();
                 id = maxID + 1;
                 newUser = new personConstructor_1.User(id, name, email, bossId, passWord);
+                return [4 /*yield*/, (0, addSubordinate_1.addSubordinate)(id, bossId)];
+            case 2:
+                _a.sent();
                 newUser.registerUser();
                 return [2 /*return*/, newUser];
         }

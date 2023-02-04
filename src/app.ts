@@ -1,11 +1,12 @@
 import express = require('express');
-// import express from 'express';
-import { testRouter } from './routes/testRoute';
+import { infoRouter } from './routes/info';
 import { registrationRouter } from './routes/registration';
+import { authenticationRouter } from './routes/authentication';
 
 const app = express();
 
-app.use(`/test`, testRouter);
-app.use(`/registration`, registrationRouter);
+app.use('/info', infoRouter);
+app.use('/registration', registrationRouter);
+app.use('/authentication', authenticationRouter);
 
 app.listen(8080);

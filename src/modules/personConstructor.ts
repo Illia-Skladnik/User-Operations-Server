@@ -1,8 +1,5 @@
 import * as types from '../types/User';
-import { getMaxID } from '../services/getMaxID';
-import { getAllUsers } from '../services/getAllUsers';
-import * as fs from 'fs/promises';
-import * as path from 'path';
+// import { getAllUsers } from '../services/getAllUsers';
 import { addUser } from '../services/addUser';
 
 abstract class Person implements types.Person {
@@ -42,6 +39,10 @@ export class User extends Person implements types.User {
   registerUser() {
     addUser(this);
   }
+
+  // async getInfo() {
+  //   return this;
+  // }
 }
 
 class Admin extends Person implements types.Admin {
@@ -55,6 +56,13 @@ class Admin extends Person implements types.Admin {
   ) {
     super(id, name, email, password);
   }
+
+  // async getInfo() {
+  //   const allUsers = await getAllUsers();
+  //   allUsers.forEach((user: any) => delete user.password);
+
+  //   return allUsers;
+  // }
 }
 
 class Boss extends Person implements types.Boss{
@@ -71,4 +79,12 @@ class Boss extends Person implements types.Boss{
     super(id, name, email, password);
     this.subordinatesId = subordinatesId;
   }
+
+  // async getInfo() {
+    // const allUsers = await getAllUsers();
+    // allUsers.forEach((user: any) => delete user.password);
+    // const subordinates = allUsers.find((user: any) => this.subordinatesId.includes(user.id));
+
+    // return subordinates;
+  // }
 }

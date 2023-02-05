@@ -8,7 +8,7 @@ export const infoController = async(req: Request, res: Response) => {
   if (!await isValidToken(token)) {
     res.sendStatus(498);
 
-    return;
+    throw new Error('Invalid token')
   }
 
   const response = await infoService(token);
@@ -17,7 +17,7 @@ export const infoController = async(req: Request, res: Response) => {
   if(!response) {
     res.sendStatus(404);
 
-    return;
+    throw new Error('error')
   }
 
   res.json(response);

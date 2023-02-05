@@ -36,31 +36,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.infoController = void 0;
-var info_1 = require("../services/info");
-var isValidToken_1 = require("../validators/isValidToken");
-var infoController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var token, response;
+exports.isAdmin = void 0;
+var getAllUsers_1 = require("../services/getAllUsers");
+var isAdmin = function (token) { return __awaiter(void 0, void 0, void 0, function () {
+    var users, foundUser;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                token = req.params.token;
-                return [4 /*yield*/, (0, isValidToken_1.isValidToken)(token)];
+            case 0: return [4 /*yield*/, (0, getAllUsers_1.getAllUsers)()];
             case 1:
-                if (!(_a.sent())) {
-                    res.sendStatus(498);
-                    throw new Error('Invalid token');
-                }
-                return [4 /*yield*/, (0, info_1.infoService)(token)];
-            case 2:
-                response = _a.sent();
-                if (!response) {
-                    res.sendStatus(404);
-                    throw new Error('error');
-                }
-                res.json(response);
-                return [2 /*return*/];
+                users = _a.sent();
+                foundUser = users.find(function (user) { return user.token === token; });
+                return [2 /*return*/, foundUser.role === 'admin'];
         }
     });
 }); };
-exports.infoController = infoController;
+exports.isAdmin = isAdmin;

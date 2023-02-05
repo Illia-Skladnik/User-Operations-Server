@@ -36,31 +36,39 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.infoController = void 0;
-var info_1 = require("../services/info");
+exports.setAdminController = void 0;
+var setAdmin_1 = require("../services/setAdmin");
+var isAdmin_1 = require("../validators/isAdmin");
 var isValidToken_1 = require("../validators/isValidToken");
-var infoController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var token, response;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
+var setAdminController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, token, newAdminId, response;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
             case 0:
-                token = req.params.token;
+                _a = req.params, token = _a.token, newAdminId = _a.newAdminId;
                 return [4 /*yield*/, (0, isValidToken_1.isValidToken)(token)];
             case 1:
-                if (!(_a.sent())) {
+                if (!(_b.sent())) {
                     res.sendStatus(498);
                     throw new Error('Invalid token');
                 }
-                return [4 /*yield*/, (0, info_1.infoService)(token)];
+                return [4 /*yield*/, (0, isAdmin_1.isAdmin)(token)];
             case 2:
-                response = _a.sent();
+                if (!(_b.sent())) {
+                    res.sendStatus(403);
+                    throw new Error('You are not admin :(');
+                }
+                return [4 /*yield*/, (0, setAdmin_1.setAdminService)(token, +newAdminId)];
+            case 3:
+                response = _b.sent();
                 if (!response) {
                     res.sendStatus(404);
-                    throw new Error('error');
+                    throw new Error('Wrong subordinate');
                 }
-                res.json(response);
+                res.status(200);
+                res.send(response);
                 return [2 /*return*/];
         }
     });
 }); };
-exports.infoController = infoController;
+exports.setAdminController = setAdminController;

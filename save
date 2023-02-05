@@ -1,8 +1,12 @@
 [
-  {"id":1,"name":"Splinter","email":"splinter@gmail.com","password":"splinter123","role":"boss","subordinatesId":[2,3,4,5]},
-  {"id":2,"name":"Donatello","email":"dasf@gmail.com","password":"ag3g","role":"user","bossId":1},
-  {"id":3,"name":"Michelangelo","email":"michelangelo@gmail.com","password":"Michelangelo123","role":"user","bossId":1},
-  {"id":4,"name":"Raphael","email":"raphael@gmail.com","password":"raphael123","role":"user","bossId":1},
-  {"id":5,"name":"Leonardo","email":"leonardo@gmail.com","password":"leonardo123","role":"user","bossId":1},
-  {"id":6,"name":"Shredder","email":"shredder@gmail.com","password":"shredder123","role":"admin","bossId":1}
+  {"id":1,"name":"Splinter","token":"8166aa86-6744-476a-ba59-b69afaa9d5b6","email":"splinter@gmail.com","password":"splinter123","role":"boss","subordinatesId":[2,3,4,5]},
+  {"id":2,"name":"Donatello","token":"1bc5df60-45eb-4c38-9058-7f1c15e1045c","email":"dasf@gmail.com","password":"ag3g","role":"user","bossId":1},
+  {"id":3,"name":"Michelangelo","token":"1885d7b5-621a-4af4-a7c6-c67e5fb8cfe5","email":"michelangelo@gmail.com","password":"Michelangelo123","role":"user","bossId":1},
+  {"id":4,"name":"Raphael","token":"8e3e330f-3a53-4f7b-99bd-5ee821e33b1a","email":"raphael@gmail.com","password":"raphael123","role":"user","bossId":1},
+  {"id":5,"name":"Leonardo","token":"1e7c0f62-7dee-4282-affd-2cf6b36ce3c7","email":"leonardo@gmail.com","password":"leonardo123","role":"user","bossId":1},
+  {"id":6,"name":"Shredder","token":"6a648d02-0d85-4e25-b425-e57cb42340ad","email":"shredder@gmail.com","password":"shredder123","role":"user","bossId":7},
+  {"id":7,"name":"Krang","token":"1603e7f4-7d43-4caf-ad7c-b52d1962f31e","email":"krang@gmail.com","password":"krang123","role":"boss","subordinatesId":[6, 10, 9]},
+  {"id":8,"name":"April O'Neil","token":"b3bb5f41-5a6d-4d00-bf56-8e73be3bebc2","email":"apriloneil@gmail.com","password":"apriloneil123","role":"admin"},
+  {"id":9,"name":"Casey Jones","token":"ef1c338a-d704-424c-9d1c-7319f41decda","email":"caseyjones@gmail.com","password":"caseyjones123","role":"user","bossId":7},
+  {"id":10,"name":"Slash","token":"c5a8e6e8-44d9-40a3-ab9e-2deefdf4e081","email":"slash@gmail.com","password":"slash123","role":"user","bossId":7}
 ]

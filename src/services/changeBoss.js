@@ -36,27 +36,36 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.registrationService = void 0;
+exports.changeBossService = void 0;
+var path = require("path");
+var fs = require("fs/promises");
+var getAllUsers_1 = require("./getAllUsers");
 var uuid_1 = require("uuid");
-var personConstructor_1 = require("../modules/personConstructor");
-var addSubordinate_1 = require("./addSubordinate");
-var getMaxID_1 = require("./getMaxID");
-var registrationService = function (name, email, bossId, passWord) { return __awaiter(void 0, void 0, void 0, function () {
-    var maxID, id, token, newUser;
+var changeBossService = function (token, subordinateId, newBossId) { return __awaiter(void 0, void 0, void 0, function () {
+    var allUsers, foundOldBoss, filteredSubordinates, foundSubordinate, foundNewBoss, filePath, string;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, (0, getMaxID_1.getMaxID)()];
+            case 0: return [4 /*yield*/, (0, getAllUsers_1.getAllUsers)()];
             case 1:
-                maxID = _a.sent();
-                id = maxID + 1;
-                token = (0, uuid_1.v4)();
-                newUser = new personConstructor_1.User(id, name, email, bossId, passWord, token);
-                return [4 /*yield*/, (0, addSubordinate_1.addSubordinate)(id, bossId)];
+                allUsers = _a.sent();
+                foundOldBoss = allUsers.find(function (person) { return person.token === token; });
+                foundOldBoss.token = (0, uuid_1.v4)();
+                if (foundOldBoss.role !== 'boss') {
+                    return [2 /*return*/, false];
+                }
+                filteredSubordinates = foundOldBoss.subordinatesId.filter(function (subordinate) { return subordinate !== subordinateId; });
+                foundOldBoss.subordinatesId = filteredSubordinates;
+                foundSubordinate = allUsers.find(function (person) { return person.id === subordinateId; });
+                foundSubordinate.bossId = newBossId;
+                foundNewBoss = allUsers.find(function (person) { return person.id === newBossId; });
+                foundNewBoss.subordinatesId.push(subordinateId);
+                filePath = path.resolve('./', 'users.json');
+                string = JSON.stringify(allUsers);
+                return [4 /*yield*/, fs.writeFile(filePath, string)];
             case 2:
                 _a.sent();
-                newUser.registerUser();
-                return [2 /*return*/, newUser];
+                return [2 /*return*/, foundOldBoss];
         }
     });
 }); };
-exports.registrationService = registrationService;
+exports.changeBossService = changeBossService;

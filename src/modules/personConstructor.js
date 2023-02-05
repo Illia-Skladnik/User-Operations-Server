@@ -19,18 +19,19 @@ exports.User = void 0;
 // import { getAllUsers } from '../services/getAllUsers';
 var addUser_1 = require("../services/addUser");
 var Person = /** @class */ (function () {
-    function Person(id, name, email, password) {
+    function Person(id, name, email, password, token) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.token = token;
     }
     return Person;
 }());
 var User = /** @class */ (function (_super) {
     __extends(User, _super);
-    function User(id, name, email, bossId, password) {
-        var _this = _super.call(this, id, name, email, password) || this;
+    function User(id, name, email, bossId, password, token) {
+        var _this = _super.call(this, id, name, email, password, token) || this;
         _this.role = 'user';
         _this.bossId = bossId;
         return _this;
@@ -43,8 +44,8 @@ var User = /** @class */ (function (_super) {
 exports.User = User;
 var Admin = /** @class */ (function (_super) {
     __extends(Admin, _super);
-    function Admin(id, name, email, password) {
-        var _this = _super.call(this, id, name, email, password) || this;
+    function Admin(id, name, email, password, token) {
+        var _this = _super.call(this, id, name, email, password, token) || this;
         _this.role = 'admin';
         return _this;
     }
@@ -52,8 +53,8 @@ var Admin = /** @class */ (function (_super) {
 }(Person));
 var Boss = /** @class */ (function (_super) {
     __extends(Boss, _super);
-    function Boss(id, name, email, password, subordinatesId) {
-        var _this = _super.call(this, id, name, email, password) || this;
+    function Boss(id, name, email, password, subordinatesId, token) {
+        var _this = _super.call(this, id, name, email, password, token) || this;
         _this.role = 'boss';
         _this.subordinatesId = subordinatesId;
         return _this;

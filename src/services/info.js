@@ -46,16 +46,25 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
 };
 exports.__esModule = true;
 exports.infoService = void 0;
+var uuid_1 = require("uuid");
 var getAllUsers_1 = require("./getAllUsers");
-var infoService = function (userId) { return __awaiter(void 0, void 0, void 0, function () {
-    var allUsers, foundUser, foundRole, subordinatesId_1, subordinates;
+var fs = require("fs/promises");
+var path = require("path");
+var infoService = function (token) { return __awaiter(void 0, void 0, void 0, function () {
+    var allUsers, foundUser, filePath, allUsersStringified, foundRole, subordinatesId_1, subordinates;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, (0, getAllUsers_1.getAllUsers)()];
             case 1:
                 allUsers = _a.sent();
                 allUsers.forEach(function (user) { return delete user.password; });
-                foundUser = allUsers.find(function (user) { return +user.id === +userId; });
+                foundUser = allUsers.find(function (user) { return user.token === token; });
+                foundUser.token = (0, uuid_1.v4)();
+                filePath = path.resolve('./', 'users.json');
+                allUsersStringified = JSON.stringify(allUsers);
+                return [4 /*yield*/, fs.writeFile(filePath, allUsersStringified)];
+            case 2:
+                _a.sent();
                 if (!foundUser) {
                     return [2 /*return*/, false];
                 }

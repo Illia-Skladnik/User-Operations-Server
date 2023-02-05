@@ -11,7 +11,7 @@ export const authenticationController = async(req: Request, res: Response) => {
   }
 
   if (!authenticationResult) {
-    res.sendStatus(401);
+    res.sendStatus(403);
   }
 
   res.status(200);

@@ -51,7 +51,7 @@ var authenticationController = function (req, res) { return __awaiter(void 0, vo
                     res.sendStatus(400);
                 }
                 if (!authenticationResult) {
-                    res.sendStatus(401);
+                    res.sendStatus(403);
                 }
                 res.status(200);
                 res.send(authenticationResult);

@@ -47,8 +47,7 @@ var addSubordinate = function (subordinateId, bossId) { return __awaiter(void 0,
             case 0: return [4 /*yield*/, (0, getAllUsers_1.getAllUsers)()];
             case 1:
                 allUsers = _a.sent();
-                foundBoss = allUsers.find(function (person) { return +person.id === +bossId; });
-                // console.log(allUsers[0].id, subordinateId, bossId);
+                foundBoss = allUsers.find(function (person) { return person.id === bossId; });
                 foundBoss.subordinatesId.push(subordinateId);
                 filePath = path.resolve('./', 'users.json');
                 string = JSON.stringify(allUsers);

@@ -7,17 +7,20 @@ abstract class Person implements types.Person {
   name: string;
   email: string;
   password: string;
+  token: string;
 
   constructor(
     id: number,
     name: string,
     email: string,
     password: string,
+    token: string,
   ) {
     this.id = id;
     this.name = name;
     this.email = email;
     this.password = password;
+    this.token = token;
   }
 }
 
@@ -31,8 +34,9 @@ export class User extends Person implements types.User {
     email: string,
     bossId: number,
     password: string,
+    token: string,
   ) {
-    super(id, name, email, password);
+    super(id, name, email, password, token);
     this.bossId = bossId;
   }
 
@@ -53,8 +57,9 @@ class Admin extends Person implements types.Admin {
     name: string,
     email: string,
     password: string,
+    token: string,
   ) {
-    super(id, name, email, password);
+    super(id, name, email, password, token);
   }
 
   // async getInfo() {
@@ -75,8 +80,9 @@ class Boss extends Person implements types.Boss{
     email: string,
     password: string,
     subordinatesId: number[],
+    token: string,
   ) {
-    super(id, name, email, password);
+    super(id, name, email, password, token);
     this.subordinatesId = subordinatesId;
   }
 

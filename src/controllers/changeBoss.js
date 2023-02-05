@@ -36,27 +36,45 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.registrationService = void 0;
-var uuid_1 = require("uuid");
-var personConstructor_1 = require("../modules/personConstructor");
-var addSubordinate_1 = require("./addSubordinate");
-var getMaxID_1 = require("./getMaxID");
-var registrationService = function (name, email, bossId, passWord) { return __awaiter(void 0, void 0, void 0, function () {
-    var maxID, id, token, newUser;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, (0, getMaxID_1.getMaxID)()];
+exports.changeBossController = void 0;
+var changeBoss_1 = require("../services/changeBoss");
+var isValidToken_1 = require("../validators/isValidToken");
+var isSubordinate_1 = require("../validators/isSubordinate");
+var isValidBossID_1 = require("../validators/isValidBossID");
+var changeBossController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, token, subordinateId, newBossId, response;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _a = req.params, token = _a.token, subordinateId = _a.subordinateId, newBossId = _a.newBossId;
+                return [4 /*yield*/, (0, isValidToken_1.isValidToken)(token)];
             case 1:
-                maxID = _a.sent();
-                id = maxID + 1;
-                token = (0, uuid_1.v4)();
-                newUser = new personConstructor_1.User(id, name, email, bossId, passWord, token);
-                return [4 /*yield*/, (0, addSubordinate_1.addSubordinate)(id, bossId)];
+                if (!(_b.sent())) {
+                    res.sendStatus(498);
+                    return [2 /*return*/];
+                }
+                return [4 /*yield*/, (0, isValidBossID_1.isValidBossID)(+newBossId)];
             case 2:
-                _a.sent();
-                newUser.registerUser();
-                return [2 /*return*/, newUser];
+                if (!(_b.sent())) {
+                    res.sendStatus(404);
+                    throw new Error('Given user is not a boss');
+                }
+                return [4 /*yield*/, (0, isSubordinate_1.isSubordinate)(token, +subordinateId)];
+            case 3:
+                if (!(_b.sent())) {
+                    res.sendStatus(404);
+                    return [2 /*return*/];
+                }
+                return [4 /*yield*/, (0, changeBoss_1.changeBossService)(token, +subordinateId, +newBossId)];
+            case 4:
+                response = _b.sent();
+                if (!response) {
+                    res.sendStatus(404);
+                    return [2 /*return*/];
+                }
+                res.json(response);
+                return [2 /*return*/];
         }
     });
 }); };
-exports.registrationService = registrationService;
+exports.changeBossController = changeBossController;

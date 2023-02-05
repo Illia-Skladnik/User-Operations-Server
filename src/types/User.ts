@@ -4,12 +4,13 @@ export interface Person {
   id: number;
   name: string;
   email: string;
-  password: string;
+  password?: string;
+  token: string;
 };
 
 export interface User extends Person {
-  role: string;
   bossId: number;
+  role: string;
 }
 
 export interface Admin extends Person {
@@ -17,6 +18,12 @@ export interface Admin extends Person {
 }
 
 export interface Boss extends Person {
-  role: string;
   subordinatesId: number[];
+  role: string;
+}
+
+export interface CommonPerson extends Person {
+  bossId?: number;
+  subordinatesId?: number[];
+  role: string;
 }

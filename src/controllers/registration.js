@@ -42,13 +42,14 @@ var isValidBossID_1 = require("../validators/isValidBossID");
 var isValidName_1 = require("../validators/isValidName");
 var isValidEmail_1 = require("../validators/isValidEmail");
 var isValidPassword_1 = require("../validators/isValidPassword");
+var doesEmailExists_1 = require("../validators/doesEmailExists");
 var registrationController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, name, email, bossId, passWord, bossIdValidation, newUser;
+    var _a, name, email, bossId, password, bossIdValidation, newUser;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
-                _a = req.params, name = _a.name, email = _a.email, bossId = _a.bossId, passWord = _a.passWord;
-                return [4 /*yield*/, (0, isValidBossID_1.isValidBossID)(bossId)];
+                _a = req.params, name = _a.name, email = _a.email, bossId = _a.bossId, password = _a.password;
+                return [4 /*yield*/, (0, isValidBossID_1.isValidBossID)(+bossId)];
             case 1:
                 bossIdValidation = _b.sent();
                 if (!bossIdValidation) {
@@ -63,12 +64,18 @@ var registrationController = function (req, res) { return __awaiter(void 0, void
                     res.sendStatus(422);
                     throw new Error('Invalid email');
                 }
-                if (!(0, isValidPassword_1.isValidPassword)(passWord)) {
+                if (!(0, isValidPassword_1.isValidPassword)(password)) {
                     res.sendStatus(422);
                     throw new Error('Too weak password');
                 }
-                return [4 /*yield*/, (0, registration_1.registrationService)(name, email, bossId, passWord)];
+                return [4 /*yield*/, (0, doesEmailExists_1.doesEmailExists)(email)];
             case 2:
+                if (_b.sent()) {
+                    res.sendStatus(409);
+                    throw new Error('This email is already registered');
+                }
+                return [4 /*yield*/, (0, registration_1.registrationService)(name, email, +bossId, password)];
+            case 3:
                 newUser = _b.sent();
                 res.statusCode = 201;
                 res.send(newUser);

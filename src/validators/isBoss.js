@@ -36,52 +36,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.changeBossController = void 0;
-var changeBoss_1 = require("../services/changeBoss");
-var isValidToken_1 = require("../validators/isValidToken");
-var isSubordinate_1 = require("../validators/isSubordinate");
-var isValidBossID_1 = require("../validators/isValidBossID");
-var isBoss_1 = require("../validators/isBoss");
-var changeBossController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, token, subordinateId, newBossId, response;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
-            case 0:
-                _a = req.params, token = _a.token, subordinateId = _a.subordinateId, newBossId = _a.newBossId;
-                return [4 /*yield*/, (0, isBoss_1.isBoss)(token)];
+exports.isBoss = void 0;
+var getAllUsers_1 = require("../services/getAllUsers");
+exports.isBoss = (function (token) { return __awaiter(void 0, void 0, void 0, function () {
+    var users, foundUser;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, (0, getAllUsers_1.getAllUsers)()];
             case 1:
-                if (_b.sent()) {
-                    res.sendStatus(403);
-                    throw new Error('You not a boss :( At least for now.');
-                }
-                return [4 /*yield*/, (0, isValidToken_1.isValidToken)(token)];
-            case 2:
-                if (!(_b.sent())) {
-                    res.sendStatus(498);
-                    throw new Error('Invalid token');
-                }
-                return [4 /*yield*/, (0, isValidBossID_1.isValidBossID)(+newBossId)];
-            case 3:
-                if (!(_b.sent())) {
-                    res.sendStatus(404);
-                    throw new Error('Given user is not a boss');
-                }
-                return [4 /*yield*/, (0, isSubordinate_1.isSubordinate)(token, +subordinateId)];
-            case 4:
-                if (!(_b.sent())) {
-                    res.sendStatus(404);
-                    return [2 /*return*/];
-                }
-                return [4 /*yield*/, (0, changeBoss_1.changeBossService)(token, +subordinateId, +newBossId)];
-            case 5:
-                response = _b.sent();
-                if (!response) {
-                    res.sendStatus(404);
-                    return [2 /*return*/];
-                }
-                res.json(response);
-                return [2 /*return*/];
+                users = _a.sent();
+                foundUser = users.find(function (user) { return user.token === token; });
+                return [2 /*return*/, foundUser.role === 'user'];
         }
     });
-}); };
-exports.changeBossController = changeBossController;
+}); });

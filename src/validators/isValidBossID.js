@@ -45,7 +45,7 @@ exports.isValidBossID = (function (bossID) { return __awaiter(void 0, void 0, vo
             case 0: return [4 /*yield*/, (0, getAllUsers_1.getAllUsers)()];
             case 1:
                 users = _a.sent();
-                usersFiltered = users.filter(function (person) { return person.role === 'boss'; });
+                usersFiltered = users.filter(function (person) { return person.role !== 'admin'; });
                 return [2 /*return*/, usersFiltered.some(function (person) { return +person.id === +bossID; })];
         }
     });

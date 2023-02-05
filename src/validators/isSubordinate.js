@@ -46,6 +46,9 @@ var isSubordinate = function (token, subordinateId) { return __awaiter(void 0, v
             case 1:
                 allUsers = _a.sent();
                 foundBoss = allUsers.find(function (person) { return person.token === token; });
+                if (foundBoss.role === 'admin') {
+                    return [2 /*return*/, true];
+                }
                 return [2 /*return*/, foundBoss.subordinatesId.includes(subordinateId)];
         }
     });

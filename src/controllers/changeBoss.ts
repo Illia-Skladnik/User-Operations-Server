@@ -3,14 +3,20 @@ import { Request, Response } from 'express';
 import { isValidToken } from '../validators/isValidToken';
 import { isSubordinate } from '../validators/isSubordinate';
 import { isValidBossID } from '../validators/isValidBossID';
+import { isBoss } from '../validators/isBoss';
 
 export const changeBossController = async(req: Request, res: Response) => {
   const { token, subordinateId, newBossId } = req.params;
 
+  if (await isBoss(token)) {
+    res.sendStatus(403);
+    throw new Error('You not a boss :( At least for now.')
+  }
+
   if (!(await isValidToken(token))) {
     res.sendStatus(498);
 
-    return;
+    throw new Error('Invalid token')
   }
 
   if (!(await isValidBossID(+newBossId))) {

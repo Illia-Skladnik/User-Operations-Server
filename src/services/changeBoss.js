@@ -41,28 +41,32 @@ var path = require("path");
 var fs = require("fs/promises");
 var getAllUsers_1 = require("./getAllUsers");
 var uuid_1 = require("uuid");
+var deleteUsersBoss_1 = require("./deleteUsersBoss");
 var changeBossService = function (token, subordinateId, newBossId) { return __awaiter(void 0, void 0, void 0, function () {
-    var allUsers, foundOldBoss, filteredSubordinates, foundSubordinate, foundNewBoss, filePath, string;
+    var allUsers, foundOldBoss, foundSubordinate, foundNewBoss, filePath, string;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, (0, getAllUsers_1.getAllUsers)()];
+            case 0: return [4 /*yield*/, (0, deleteUsersBoss_1.deleteUsersBoss)(subordinateId)];
             case 1:
+                _a.sent();
+                return [4 /*yield*/, (0, getAllUsers_1.getAllUsers)()];
+            case 2:
                 allUsers = _a.sent();
                 foundOldBoss = allUsers.find(function (person) { return person.token === token; });
                 foundOldBoss.token = (0, uuid_1.v4)();
-                if (foundOldBoss.role !== 'boss') {
-                    return [2 /*return*/, false];
-                }
-                filteredSubordinates = foundOldBoss.subordinatesId.filter(function (subordinate) { return subordinate !== subordinateId; });
-                foundOldBoss.subordinatesId = filteredSubordinates;
                 foundSubordinate = allUsers.find(function (person) { return person.id === subordinateId; });
                 foundSubordinate.bossId = newBossId;
                 foundNewBoss = allUsers.find(function (person) { return person.id === newBossId; });
+                if (foundNewBoss.role === 'user') {
+                    delete foundNewBoss.bossId;
+                    foundNewBoss.subordinatesId = [];
+                    foundNewBoss.role = 'boss';
+                }
                 foundNewBoss.subordinatesId.push(subordinateId);
                 filePath = path.resolve('./', 'users.json');
                 string = JSON.stringify(allUsers);
                 return [4 /*yield*/, fs.writeFile(filePath, string)];
-            case 2:
+            case 3:
                 _a.sent();
                 return [2 /*return*/, foundOldBoss];
         }

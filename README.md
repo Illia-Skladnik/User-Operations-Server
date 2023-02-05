@@ -83,3 +83,21 @@ Type:
 Exapmle:  
 http://localhost:8080/functions/changeBoss/8166aa86-6744-476a-ba59-b69afaa9d5b6/2/7
 ```
+
+### Add new admin:
+Method works only for users.
+Sets admin role for the user.
+```
+• Validates: token, newAdminId;
+
+• Requires: token, newAdminId;
+
+Responds:  
+• The object of current admin with new token.
+
+Type:  
+• GET
+
+Exapmle:  
+http://localhost:8080/functions/setAdmin/b3bb5f41-5a6d-4d00-bf56-8e73be3bebc2/2
+```

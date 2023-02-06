@@ -41,18 +41,22 @@ var uuid_1 = require("uuid");
 var personConstructor_1 = require("../modules/personConstructor");
 var addSubordinate_1 = require("./addSubordinate");
 var getMaxID_1 = require("./getMaxID");
-var registrationService = function (name, email, bossId, passWord) { return __awaiter(void 0, void 0, void 0, function () {
-    var maxID, id, token, newUser;
+var bcrypt = require("bcrypt");
+var registrationService = function (name, email, bossId, password) { return __awaiter(void 0, void 0, void 0, function () {
+    var hash, maxID, id, token, newUser;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, (0, getMaxID_1.getMaxID)()];
+            case 0: return [4 /*yield*/, bcrypt.hash(password, 10)];
             case 1:
+                hash = _a.sent();
+                return [4 /*yield*/, (0, getMaxID_1.getMaxID)()];
+            case 2:
                 maxID = _a.sent();
                 id = maxID + 1;
                 token = (0, uuid_1.v4)();
-                newUser = new personConstructor_1.User(id, name, email, bossId, passWord, token);
+                newUser = new personConstructor_1.User(id, name, email, bossId, hash, token);
                 return [4 /*yield*/, (0, addSubordinate_1.addSubordinate)(id, bossId)];
-            case 2:
+            case 3:
                 _a.sent();
                 newUser.registerUser();
                 return [2 /*return*/, newUser];

@@ -10,6 +10,7 @@ export const registrationController = async(req: Request, res: Response) => {
   const { name, email, bossId, password } = req.params;
   const bossIdValidation = await isValidBossID(+bossId);
 
+
   if (!bossIdValidation) {
     res.sendStatus(422);
     throw new Error('No boss with current ID');

@@ -38,6 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 exports.authenticationService = void 0;
 var getAllUsers_1 = require("./getAllUsers");
+var bcrypt = require("bcrypt");
 var authenticationService = function (email, password) { return __awaiter(void 0, void 0, void 0, function () {
     var allUsers, foundUser;
     return __generator(this, function (_a) {
@@ -49,7 +50,7 @@ var authenticationService = function (email, password) { return __awaiter(void 0
                 if (!foundUser) {
                     return [2 /*return*/, null];
                 }
-                return [2 /*return*/, foundUser.password === password];
+                return [2 /*return*/, bcrypt.compare(password, foundUser.password)];
         }
     });
 }); };

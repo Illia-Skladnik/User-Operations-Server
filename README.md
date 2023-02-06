@@ -1,6 +1,6 @@
 # User Operations Server
 Hi!
-This task is written in TS. JS files are compiled automatically.
+This task is written in TS. JS files have been compiled automatically.
 To run code please, use next commands:
 • npm i
 • cd src
@@ -8,15 +8,14 @@ To run code please, use next commands:
 • try commands in Postman using Examples from description below:
 
 This app can run the quiz and adapt responses to user requests in real time.
-Please, run 'node App.js' to see how it works.
+Please, run 'node app.js' to see how it works.
 
 Also it returns all possible paths as JSON file.
+
 ## All of the server methods are described here:
 
-
-
-### Add User to database:
-The method adds new user with User type to DB.
+### Register User to database:
+The method adds new user with User type to DB. Keeps the password hash created in bcrypt.
 
 ```
 • Validates: bossId, name, email (correct format and presence in DB), password.
@@ -34,7 +33,21 @@ http://localhost:8080/registration/Borys/JohnsonsBaby@gmail.com/1/giveThemDamnJe
 ```
 
 ### User authentication:
-Authenticates the user.
+Authenticates the user using bcrypt.
+
+If you wanna try how authentication works, here are the passwords to chech the method:
+
+Splinter: splinter123
+Donatello: donatello123
+Michelangelo: michelangelo123
+Raphael: raphael123
+Leonardo: leonardo123
+Shredder: shredder123
+Krang: krang123
+April O'Neil: apriloneil123
+Casey Jones: caseyjones123
+Slash: slash123
+
 ```
 • Validates: email (if there is current email in DB). 
 
@@ -55,7 +68,8 @@ Works according to the following algorithm:
 1. Validates current token;
 2. Checks current user's role;
 3. Generates new token;
-4. Send info depents on the role with new generated user token.
+4. Sends info depents on the role with new generated user token.
+5. Rewrites new token in DB.
 ```
 • Validates: token.
 
@@ -80,6 +94,7 @@ Works according to the following algorithm:
 4. Sets new boss for subordinate;
 5. Adds subordinate for given boss;
 6. Returns the object of current boss wiht new generated token.
+7. Rewrites new tokenj of current boss in DB.
 ```
 • Validates: token, subordinateId, newBossId;
 
@@ -97,7 +112,7 @@ http://localhost:8080/functions/changeBoss/8166aa86-6744-476a-ba59-b69afaa9d5b6/
 
 ### Add new admin:
 Method works only for users.
-Sets admin role for the user.
+Sets admin role for the user and changes token for current user.
 ```
 • Validates: token, newAdminId;
 

@@ -35,7 +35,7 @@ http://localhost:8080/registration/Borys/JohnsonsBaby@gmail.com/1/giveThemDamnJe
 ### User authentication:
 Authenticates the user using bcrypt.
 
-If you wanna try how authentication works, here are the passwords to chech the method:
+If you wanna try how authentication works, here are the passwords to check the method:
 
 Splinter: splinter123
 Donatello: donatello123

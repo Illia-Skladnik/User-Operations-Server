@@ -37,16 +37,16 @@ Authenticates the user using bcrypt.
 
 If you wanna try how authentication works, here are the passwords to check the method:
 
-Splinter: splinter123
-Donatello: donatello123
-Michelangelo: michelangelo123
-Raphael: raphael123
-Leonardo: leonardo123
-Shredder: shredder123
-Krang: krang123
-April O'Neil: apriloneil123
-Casey Jones: caseyjones123
-Slash: slash123
+- Splinter: splinter123
+- Donatello: donatello123
+- Michelangelo: michelangelo123
+- Raphael: raphael123
+- Leonardo: leonardo123
+- Shredder: shredder123
+- Krang: krang123
+- April O'Neil: apriloneil123
+- Casey Jones: caseyjones123
+- Slash: slash123
 
 ```
 • Validates: email (if there is current email in DB). 

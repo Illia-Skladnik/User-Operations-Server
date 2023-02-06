@@ -5,6 +5,7 @@ This task is written in TS. JS files have been compiled automatically. It handle
 node_modules is already in the project.
 
 To run code please, use next commands:
+- npm i
 - cd src
 - node app.js
 

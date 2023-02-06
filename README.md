@@ -1,15 +1,14 @@
 # User Operations Server
 Hi!
-This task is written in TS. JS files have been compiled automatically.
+This task is written in TS. JS files have been compiled automatically. It handles all possible errors.
 
 node_modules is already in the project.
+
 To run code please, use next commands:
 - cd src
 - node app.js
-- Note that the user’s token is updated at each request!
-- try commands in Postman using Examples from description below:
 
-It also handles all possible errors.
+Note that the user’s token is updated at each request! Try commands in Postman using Examples from description below:
 
 ## All of the server methods are described here:
 

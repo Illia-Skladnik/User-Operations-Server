@@ -2,10 +2,10 @@
 Hi!
 This task is written in TS. JS files have been compiled automatically.
 To run code please, use next commands:
-• npm i
-• cd src
-• node app.js
-• try commands in Postman using Examples from description below:
+- npm i
+- cd src
+- node app.js
+- try commands in Postman using Examples from description below:
 
 This app can run the quiz and adapt responses to user requests in real time.
 Please, run 'node app.js' to see how it works.

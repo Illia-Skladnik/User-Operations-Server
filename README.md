@@ -5,8 +5,8 @@ To run code please, use next commands:
 - npm i
 - cd src
 - node app.js
+- Note that the user’s token is updated at each request!
 - try commands in Postman using Examples from description below:
-Note that the user’s token is updated at each request!
 
 It also handles all possible errors.
 

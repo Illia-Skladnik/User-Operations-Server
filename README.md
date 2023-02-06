@@ -1,5 +1,16 @@
 # User Operations Server
+Hi!
+This task is written in TS. JS files are compiled automatically.
+To run code please, use next commands:
+• npm i
+• cd src
+• node app.js
+• try commands in Postman using Examples from description below:
 
+This app can run the quiz and adapt responses to user requests in real time.
+Please, run 'node App.js' to see how it works.
+
+Also it returns all possible paths as JSON file.
 ## All of the server methods are described here:
 
 

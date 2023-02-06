@@ -2,7 +2,6 @@
 Hi!
 This task is written in TS. JS files have been compiled automatically.
 To run code please, use next commands:
-- npm i
 - cd src
 - node app.js
 - Note that the user’s token is updated at each request!

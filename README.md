@@ -7,7 +7,7 @@ node_modules is already in the project.
 To run code please, use next commands:
 - cd src
 - node app.js
-- 
+
 Note that the user’s token is updated at each request! Try commands in Postman using Examples from description below:
 
 It also handles all possible errors.

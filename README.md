@@ -2,10 +2,10 @@
 Hi!
 This task is written in TS. JS files have been compiled automatically.
 To run code please, use next commands:
-• npm i
-• cd src
-• node app.js
-• try commands in Postman using Examples from description below:
+- npm i
+- cd src
+- node app.js
+- try commands in Postman using Examples from description below:
 
 It also handles all possible errors.
 
@@ -32,18 +32,18 @@ http://localhost:8080/registration/Borys/JohnsonsBaby@gmail.com/1/giveThemDamnJe
 ### User authentication:
 Authenticates the user using bcrypt.
 
-If you wanna try how authentication works, here are the passwords to chech the method:
+If you wanna try how authentication works, here are the passwords to check the method:
 
-Splinter: splinter123
-Donatello: donatello123
-Michelangelo: michelangelo123
-Raphael: raphael123
-Leonardo: leonardo123
-Shredder: shredder123
-Krang: krang123
-April O'Neil: apriloneil123
-Casey Jones: caseyjones123
-Slash: slash123
+- Splinter: splinter123
+- Donatello: donatello123
+- Michelangelo: michelangelo123
+- Raphael: raphael123
+- Leonardo: leonardo123
+- Shredder: shredder123
+- Krang: krang123
+- April O'Neil: apriloneil123
+- Casey Jones: caseyjones123
+- Slash: slash123
 
 ```
 • Validates: email (if there is current email in DB). 

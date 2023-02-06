@@ -36,52 +36,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.changeBossController = void 0;
-var changeBoss_1 = require("../services/changeBoss");
-var isValidToken_1 = require("../validators/isValidToken");
-var isSubordinate_1 = require("../validators/isSubordinate");
-var isValidBossID_1 = require("../validators/isValidBossID");
-var isBoss_1 = require("../validators/isBoss");
-var changeBossController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, token, subordinateId, newBossId, response;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
-            case 0:
-                _a = req.params, token = _a.token, subordinateId = _a.subordinateId, newBossId = _a.newBossId;
-                return [4 /*yield*/, (0, isValidToken_1.isValidToken)(token)];
-            case 1:
-                if (!(_b.sent())) {
-                    res.sendStatus(498);
-                    throw new Error('Invalid token');
-                }
-                return [4 /*yield*/, (0, isBoss_1.isBoss)(token)];
-            case 2:
-                if (_b.sent()) {
-                    res.sendStatus(403);
-                    throw new Error('You\'re not a boss :( At least for now.');
-                }
-                return [4 /*yield*/, (0, isValidBossID_1.isValidBossID)(+newBossId)];
-            case 3:
-                if (!(_b.sent())) {
-                    res.sendStatus(404);
-                    throw new Error('Given user is not a boss');
-                }
-                return [4 /*yield*/, (0, isSubordinate_1.isSubordinate)(token, +subordinateId)];
-            case 4:
-                if (!(_b.sent())) {
-                    res.sendStatus(404);
-                    return [2 /*return*/];
-                }
-                return [4 /*yield*/, (0, changeBoss_1.changeBossService)(token, +subordinateId, +newBossId)];
-            case 5:
-                response = _b.sent();
-                if (!response) {
-                    res.sendStatus(404);
-                    return [2 /*return*/];
-                }
-                res.json(response);
-                return [2 /*return*/];
-        }
+exports.errorController = void 0;
+var errorController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        res.status(404);
+        res.json('Wrong path. Please, try another.');
+        return [2 /*return*/];
     });
 }); };
-exports.changeBossController = changeBossController;
+exports.errorController = errorController;

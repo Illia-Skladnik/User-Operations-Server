@@ -8,15 +8,15 @@ import { isBoss } from '../validators/isBoss';
 export const changeBossController = async(req: Request, res: Response) => {
   const { token, subordinateId, newBossId } = req.params;
 
-  if (await isBoss(token)) {
-    res.sendStatus(403);
-    throw new Error('You not a boss :( At least for now.')
-  }
-
   if (!(await isValidToken(token))) {
     res.sendStatus(498);
 
     throw new Error('Invalid token')
+  }
+
+  if (await isBoss(token)) {
+    res.sendStatus(403);
+    throw new Error('You\'re not a boss :( At least for now.')
   }
 
   if (!(await isValidBossID(+newBossId))) {

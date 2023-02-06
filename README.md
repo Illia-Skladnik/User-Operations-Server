@@ -92,7 +92,7 @@ Works according to the following algorithm:
 4. Sets new boss for subordinate;
 5. Adds subordinate for given boss;
 6. Returns the object of current boss wiht new generated token.
-7. Rewrites new tokenj of current boss in DB.
+7. Rewrites new token of current boss in DB.
 ```
 • Validates: token, subordinateId, newBossId;
 

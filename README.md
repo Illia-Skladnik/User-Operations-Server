@@ -1,6 +1,8 @@
 # User Operations Server
 Hi!
 This task is written in TS. JS files have been compiled automatically.
+
+node_modules is already in the project.
 To run code please, use next commands:
 - cd src
 - node app.js

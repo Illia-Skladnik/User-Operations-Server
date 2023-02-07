@@ -2,8 +2,6 @@
 Hi!
 This task is written in TS. JS files have been compiled automatically. It handles all possible errors.
 
-node_modules is already in the project.
-
 To run code please, use next commands:
 - npm i
 - cd src

@@ -1,21 +1,17 @@
 import * as express from 'express';
+import * as cors from 'cors';
+import * as dotenv from 'dotenv';
+import mongoose from 'mongoose';
+import bodyParser = require('body-parser');
 import { infoRouter } from './routes/info';
 import { registrationRouter } from './routes/registration';
 import { authenticationRouter } from './routes/authentication';
 import { functionsRouter } from './routes/functions';
 import { errorRouter } from './routes/error';
 import { getAllRouter } from './routes/getAllRouter';
-import mongoose from 'mongoose';
-import * as cors from 'cors';
-// import * as dotenv from 'dotenv';
-// dotenv.config();
-// import 'dotenv/config';
-// require('dotenv').config();
-import bodyParser = require('body-parser');
-require('dotenv').config({path: '/.env' })
 
-const uri = 'mongodb+srv://scladnik:McPaW5Cuovp7XWEq@mongodbcluster.t6wxcpr.mongodb.net/UsersDB?retryWrites=true&w=majority';
-// const PORT = process.env.PORT;
+dotenv.config();
+const uri = process.env.MONGO_URI || 'mongodb+srv://scladnik:McPaW5Cuovp7XWEq@mongodbcluster.t6wxcpr.mongodb.net/UsersDB?retryWrites=true&w=majority';
 const PORT = process.env.PORT || 8080;
 
 async function connect() {

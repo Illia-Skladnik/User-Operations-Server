@@ -2,7 +2,7 @@ import {v4 as uuidv4} from 'uuid';
 import { User } from "../models/user";
 
 export const setAdminService = async (token: string, newAdminId: string) => {
-  const foundUser = await User.findOne({id: newAdminId});
+  const foundUser = await User.findById(newAdminId);
   if (!foundUser) {
     return false;
   }

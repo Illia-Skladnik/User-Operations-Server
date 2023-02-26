@@ -39,7 +39,7 @@ Body:
 • Content-Type: JSON
 {
   "name": "Borys",
-  "email": "JohnsonsBaby@gmail.com",
+  "email": "johnsonsBaby@gmail.com",
   "bossId": "63f89d363b8638dc16b79b47",
   "userPass": "giveThemDamnJets"
 }

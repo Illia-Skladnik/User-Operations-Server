@@ -3,7 +3,6 @@ import { Request, Response } from 'express';
 
 export const authenticationController = async(req: Request, res: Response) => {
   const { email, password } = req.body;
-
   const authenticationResult = await authenticationService(email, password);
 
   if (authenticationResult === null) {

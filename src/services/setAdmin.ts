@@ -1,25 +1,21 @@
-import { CommonPerson } from "../types/User";
-import { getAllUsers } from "./getAllUsers";
-import * as path from 'path';
-import * as fs from 'fs/promises';
 import {v4 as uuidv4} from 'uuid';
+import { User } from "../models/user";
 
-export const setAdminService = async (token: string, newAdminId: number) => {
-  const users = await getAllUsers();
-  const foundUser = users.find((person: CommonPerson) => person.id === newAdminId);
-
-  if (foundUser.role !== 'user') {
+export const setAdminService = async (token: string, newAdminId: string) => {
+  const foundUser = await User.findOne({id: newAdminId});
+  if (!foundUser) {
     return false;
-  };
-
-  const currentAdmin = users.find((person: CommonPerson) => person.token === token);
-  currentAdmin.token = uuidv4();
-
+  }
   foundUser.role = 'admin';
-  delete foundUser.bossId;
-  const filePath = path.resolve('./', 'users.json');
-  const string = JSON.stringify(users);
-  await fs.writeFile(filePath, string);
+  foundUser.bossId = [];
+  await foundUser.save();
+
+  const currentAdmin = await User.findOne({token: token});
+  if (!currentAdmin) {
+    return false;
+  }
+  currentAdmin.token = uuidv4();
+  await currentAdmin.save()
 
   return currentAdmin;
 };

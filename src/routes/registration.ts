@@ -1,6 +1,5 @@
-import express = require('express');
-
+import * as express from 'express';
 import { registrationController } from "../controllers/registration";
 
 export const registrationRouter = express.Router();
-registrationRouter.post('/:name/:email/:bossId/:password', registrationController);
+registrationRouter.post('/', registrationController);

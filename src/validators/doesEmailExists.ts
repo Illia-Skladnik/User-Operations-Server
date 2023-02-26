@@ -1,7 +1,7 @@
-import { getAllUsers } from "../services/getAllUsers";
+import { User } from "../models/user";
 
 export const doesEmailExists = async (email: string) => {
-  const users = await getAllUsers();
+  const user = await User.findOne({email: email});
 
-  return users.some((person: any) => person.email === email);
+  return !!user;
 };

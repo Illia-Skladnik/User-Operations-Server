@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import { isValidToken } from "../validators/isValidToken";
 
 export const infoController = async(req: Request, res: Response) => {
-  const { token } = req.params;
+  const { token } = req.body;
 
   if (!await isValidToken(token)) {
     res.sendStatus(498);

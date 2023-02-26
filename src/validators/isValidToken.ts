@@ -1,8 +1,7 @@
-import { getAllUsers } from "../services/getAllUsers";
-import { CommonPerson } from "../types/User";
+import { User } from "../models/user";
 
 export const isValidToken = async (token: string) => {
-  const users = await getAllUsers();
+  const user = await User.findOne({token: token});
 
-  return users.some((user: CommonPerson) => user.token === token);
+  return !!user;
 };

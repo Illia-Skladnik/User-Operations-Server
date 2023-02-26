@@ -1,8 +1,10 @@
-import { getAllUsers } from "../services/getAllUsers";
-import { CommonPerson } from "../types/User";
+import { User } from "../models/user";
 
-export const isBoss = (async(token: string) => {
-  const users = await getAllUsers();
-  const foundUser = users.find((user: CommonPerson) => user.token === token);
-  return foundUser.role === 'user';
-});
+export const isBoss = async(token: string) => {
+  const user = await User.findOne({token: token});
+  if (!user) {
+    return false;
+  }
+
+  return user.role === 'user';
+};

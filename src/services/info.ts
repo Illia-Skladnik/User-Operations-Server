@@ -1,37 +1,33 @@
 import {v4 as uuidv4} from 'uuid';
-import { getAllUsers } from "./getAllUsers";
-import * as fs from 'fs/promises';
-import * as path from 'path';
-import { CommonPerson } from '../types/User';
+import { User } from '../models/user';
 
 export const infoService = async (token: string) => {
-  const allUsers = await getAllUsers();
-  allUsers.forEach((user: CommonPerson) => delete user.password);
-  const foundUser = allUsers.find((user: CommonPerson) => user.token === token);
-  foundUser.token = uuidv4();
-  const filePath = path.resolve('./', 'users.json');
-  const allUsersStringified = JSON.stringify(allUsers);
-  await fs.writeFile(filePath, allUsersStringified);
 
-  if (!foundUser) {
+  let user = await User.findOne({token: token});
+
+  if (user) {
+    user.token = uuidv4();
+  } else {
     return false;
-  }
-  
-  const foundRole = foundUser.role;
+  };
 
+  user?.save();
+  
+  const foundRole = user.role;
 
   switch (foundRole) {
     case 'user':
-      return foundUser;
+      return user;
     
     case 'admin':
+      const allUsers = await User.find();
       return allUsers;
 
     case 'boss':
       {
-        const subordinatesId = foundUser.subordinatesId;
-        const subordinates = allUsers.filter((user: CommonPerson) => subordinatesId.includes(user.id));
-        return [foundUser, ...subordinates];
+        const subordinatesId = user.subordinatesId;
+        const subordinates = await User.find({id: { $in: subordinatesId}});
+        return [user, ...subordinates];
       };
 
     default:

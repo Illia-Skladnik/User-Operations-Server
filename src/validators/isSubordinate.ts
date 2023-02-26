@@ -1,13 +1,11 @@
-import { getAllUsers } from "../services/getAllUsers";
-import { CommonPerson } from "../types/User";
+import { User } from "../models/user";
 
 export const isSubordinate = async (token: string, subordinateId: number) => {
-  const allUsers = await getAllUsers();
-  const foundBoss = allUsers.find((person: CommonPerson) => person.token === token);
+  const foundBoss = await User.findOne({token: token});
 
-  if (foundBoss.role === 'admin') {
+  if (foundBoss?.role === 'admin') {
     return true;
   }
 
-  return foundBoss.subordinatesId.includes(subordinateId);
+  return foundBoss?.subordinatesId?.includes(subordinateId);
 };

@@ -1,6 +1,5 @@
-import express = require('express');
-
+import * as express from 'express';
 import { infoController } from "../controllers/info";
 
 export const infoRouter = express.Router();
-infoRouter.get('/:token', infoController);
+infoRouter.post('/', infoController);

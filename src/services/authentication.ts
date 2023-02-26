@@ -1,14 +1,12 @@
-import { CommonPerson } from "../types/User";
-import { getAllUsers } from "./getAllUsers";
 import * as bcrypt from 'bcrypt';
+import { User } from "../models/user";
 
 export const authenticationService = async (email: string, password: string) => {
-  const allUsers = await getAllUsers();
-  const foundUser = allUsers.find((user: CommonPerson) => user.email === email);
+  const user = await User.findOne({email: email});
 
-  if (!foundUser) {
+  if (!user) {
     return null;
   }
 
-  return bcrypt.compare(password, foundUser.password);;
+  return bcrypt.compare(password, user.password);;
 };

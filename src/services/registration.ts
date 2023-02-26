@@ -1,18 +1,14 @@
 import {v4 as uuidv4} from 'uuid';
-import { User } from "../modules/personConstructor";
 import { addSubordinate } from "./addSubordinate";
-import { getMaxID } from "./getMaxID";
 import * as bcrypt from 'bcrypt';
+import { User } from '../models/user'
 
-export const registrationService = async (name: string, email: string, bossId: number, password: string) => {
-  const hash = await bcrypt.hash(password, 10);
-  const maxID = await getMaxID();
-  const id = maxID + 1;
+export const registrationService = async (name: string, email: string, bossId: string, userPass: string) => {
+  const password = await bcrypt.hash(userPass, 10);
   const token = uuidv4();
-  const newUser = new User(id, name, email, bossId, hash, token);
-  await addSubordinate(id, bossId);
-  newUser.registerUser();
-
+  const role = 'user';
+  const newUser = new User({name, email, bossId: bossId, password, token, role});
+  await addSubordinate(newUser.id, bossId);
 
   return newUser;
 };

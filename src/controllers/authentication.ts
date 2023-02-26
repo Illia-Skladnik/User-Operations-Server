@@ -2,7 +2,7 @@ import { authenticationService } from "../services/authentication";
 import { Request, Response } from 'express';
 
 export const authenticationController = async(req: Request, res: Response) => {
-  const { email, password } = req.params;
+  const { email, password } = req.body;
 
   const authenticationResult = await authenticationService(email, password);
 

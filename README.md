@@ -14,7 +14,7 @@ To run code please, use next commands:
 - cd src
 - npx ts-node app.ts
 
-Note that the user’s token is updated at each request! Try commands in Postman using Examples from description below:
+Note that the user’s token is updated at **each request**! Try commands in Postman using Examples from the description below:
 
 ## All of the server methods are described here:
 
